@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+  {% include 'auctions/alert.html' %}
+    <h2 class="text-center mb-5 alert-light rounded border pt-2 pb-2">Active Listings</h2>
+</div>
+<div class="active-products">
+  <div class="container">
+   <div class="row">
+    <div class="card-group">
+{% for product in products %}
+ <div class="col-md-4">
+   <div class="card">
+
+    {% if not products.ended %} <span class="badge badge-success pl-3 pr-3 pt-2 pb-2 text">Active</span> {% else %} <span class="badge badge-warning pl-3 pr-3 pt-2 pb-2 text">Closed</span> {% endif %}
+
+    <img class="card-img-top" src="{{product.imageurl}}" alt="Card image cap" width="200px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description|truncatewords:20}}</p><hr>
+      <small class="float-left">Starting Price: ${{product.price}}</small>
+      {% if product.bid_price %}
+      <small class="float-right">Current Price:<span>${{product.bid_price}}</span></small>
+      {% else %}
+      <small class="float-right">Current Price:<span>${{product.price}}</span></small>
+      {% endif %}
+    </div>
+    <div class="card-footer">
+      <a class="float-left btn btn-info form-control btn-sm" href="/details/{{product.title}}">View Listings</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+      </div> 
+    </div>
+  </div>
+</div>
+{% endblock %}

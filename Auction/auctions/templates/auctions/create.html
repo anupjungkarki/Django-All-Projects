@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body%}
+<div class="container">
+	{% include 'auctions/alert.html' %}
+    <div class="create-new-post">
+		<h2 class="text-center mb-5 alert-light rounded border pt-2 pb-2">Create Listing</h2>
+		<form action="{% url 'create' %}" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				{{form.title}}<br>
+				{{form.description}}<br>
+				{{form.price}}<br>
+				{{form.imageurl}}<br>
+				{{form.category}}<br><br>
+				<button type="submit" class="btn btn-primary btn-sm pl-4 pr-4">SubmitData</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

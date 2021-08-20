@@ -1,0 +1,47 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="product-categories">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 mx-auto">
+       <div class="list-group">
+        <center><h5>CATEGORIES</h5></center>
+       <a href="/listing" class="list-group-item list-group-item-action">All Products</a>
+       {% for category in categories %}
+       <a href="{% url 'listing' %}?category={{category.id}}" class="list-group-item list-group-item-action">{{category.name}}</a>
+        {% endfor %}
+  </div>
+</div>
+<div class="active-products col-lg-9 mx-auto">
+  <h2 class="text-center mb-5 alert-light rounded border pt-2 pb-2">All-Listings</h2>
+  <div class="card-group row mx-auto">
+    {% for product in products %}
+   <div class="col-md-6">
+   <div class="card">
+    
+      {% if not product.ended %} <span class="badge badge-success pl-3 pr-3 pt-2 pb-2 text">Active</span> {% else %} <span class="badge badge-warning pl-3 pr-3 pt-2 pb-2 text">Closed</span> {% endif %}
+
+    <img class="card-img-top" src="{{product.imageurl}}" alt="Card image cap" height="200px" width="200px">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description|truncatewords:20}}</p><hr>
+      <small class="float-left">Starting Price: ${{product.price}}</small>
+      {% if product.bid_price %}
+      <small class="float-right">Current Price:<span>${{product.bid_price}}</span></small>
+      {% else %}
+      <small class="float-right">Current Price:<span>${{product.price}}</span></small>
+      {% endif %}
+    </div>
+    <div class="card-footer">
+      <a class="float-left btn btn-info form-control btn-sm" href="/details/{{product.title}}">View Listings</a> 
+     </div>
+    </div>
+  </div>
+  {% endfor %}
+</div> 
+  </div>
+   </div>
+    </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,191 @@
+
+
+body {
+    margin:0px;
+}
+
+.heading-layout
+{
+ background:#008060;
+}
+.title
+{
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    color: #ffff;
+    padding-top: 10px;
+    font-weight: bold;
+}
+.msg
+{
+	color: #fff;
+	margin-top: 5px;
+	font-weight: bold;
+}
+.nav .nav-item a
+{
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.btn
+ {
+	padding-left: 10px;
+	padding-right: 10px;
+ }
+/*Card CSS*/
+ .card-footer a
+ {
+   text-decoration: none !important;
+   font-weight: bold;
+ }
+.card-body small
+{
+	font-weight: bold;
+	font-size: 10px;
+}
+
+.card-body span
+{
+	font-weight: bold;
+	color: red;
+}
+
+.card-body p
+{
+ text-align: justify;
+}
+
+.msg-before-login a{
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.card-body h5
+{
+	text-align: center;
+	font-weight: bold;
+	
+}
+.card{
+	margin-bottom: 25px;
+}
+
+/*Product Details CSS*/
+/*product list*/
+
+.pro-title {
+    color: #5A5A5A;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.product-list .price {
+    color:#fc5959 ;
+    font-size: 15px;
+}
+
+.pro-img-details img {
+    width: 100%;
+    height: 400px;
+}
+
+.pro-d-title {
+    font-size: 20px;
+    margin-top: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.product_meta {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin: 15px 0;
+}
+
+.product_meta span {
+    display: block;
+    margin-bottom: 10px;
+}
+.product_meta a, .pro-price{
+    color:#fc5959 ;
+}
+
+.pro-price, .amount-old {
+    font-size: 13px;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.pro-d-head {
+    font-size: 18px;
+    font-weight: 300;
+}
+.form{
+	width: 200px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+/*Add Commment CSS*/
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+.panel-body .btn1
+{
+	margin-top: 8px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+/*css catogery dropdown*/
+.product-categories select
+{
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffc10785;
+}
+
+.footer
+ {
+background-color: #008060;
+color: #ffffff;
+}
+
+.notice
+{
+    margin-top: 100px;
+    margin-bottom: 120px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.card
+{
+  position: relative;
+  text-align: center;
+}
+
+.text{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}

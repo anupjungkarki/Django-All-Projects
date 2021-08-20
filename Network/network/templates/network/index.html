@@ -1,0 +1,132 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container">
+  {% if user.is_authenticated %}
+    <div class="card mt-3">
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+          <h5 >Make A Publication</h5>
+        </ul>
+      </div>
+      <div class="card-body">
+      <form action="{% url 'newpost' username=user.username %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="sr-only" for="message">post</label>
+          <textarea class="form-control mb-2" id="content" name="textarea" rows="3" placeholder="What are you thinking?"></textarea>
+          <button type="submit" id="submit" class="btn btn-primary btn-sm float-left pl-5 pr-5">Post</button>
+        </div>
+      </form>
+      {% else %}
+      {% endif %}
+      </div>
+    </div>
+</div>
+
+<!-- Post Section Code start -->
+<div class="container">
+  {% for post in pages %}
+    <div class="card mt-4">
+      <div class="card-body">
+       <a class="text-dark profile-name" href="{% url 'profile' username=post.user %}"> @{{post.user}} <i><small class="post">Posted On: <i class="fa fa-clock-o"></i><span> {{post.date}}</span></small></i></a><br>
+       <p class="content text-justify"> {{post.content}} </p>
+      </div>
+     <div class="card-footer">
+      {% if request.user == post.user %}
+      <form action="{% url 'like_post' %}" method="post">
+        {% csrf_token %}
+          <input type="hidden" name="post_id" value="{{post.id}}">
+        {% if user not in post.liked.all %}
+           <button class="btn-like" type="submit"><i class="fa fa-thumbs-up m-lg-2" aria-hidden="true"> Like </i></button>
+        {% else %}
+           <button class="btn-unlike" type="submit"><i class="fa fa-thumbs-down m-lg-2" aria-hidden="true"> Unlike </i></button>
+        {% endif %}
+
+        {% else %}
+           <i class="btn-like fa fa-thumbs-up m-lg-2" aria-hidden="true"></i>
+        {% endif %}
+
+        <strong class="color-likes">{{post.liked.all.count}} Likes</strong>
+
+        {% if request.user == post.user %}
+          <a class="edit" href="" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o m-lg-2" aria-hidden="true"> Edit </i></a>
+          <a class="delete" href="" data-toggle="modal" data-target="#delete"><i class="fa fa-trash m-lg-2" aria-hidden="true"> Delete </i></a>
+      </form>
+        {% else %}
+        {% endif %}
+      <!-- Button trigger modal -->
+
+<!-- Modal for edit-->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit A Publication</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="card-body">
+      <form method=post action="{% url 'edit' post_id=post.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="sr-only" for="message">post</label>
+          <textarea class="form-control mb-2" id="content" name="textarea" rows="3" placeholder="What are you thinking?"> {{post.content}} </textarea>
+          <button type="submit" id="submit" class="btn btn-primary btn-sm float-left pl-5 pr-5">Post</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Model end -->
+
+<!-- Modal  for delete-->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete The Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="card-body">
+      <p class="alert alert-warning">Are You Sure Want To delete The Post??</p> 
+    <form action="{% url 'delete' post_id=post.id %}" method="post">
+            {% csrf_token %}
+      <button type="submit" id="submit" class="btn btn-primary btn-sm float-left pl-5 pr-5">Yes</button>
+    </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Model end -->
+    </div>
+      </div>
+      {% endfor %}
+       </div><!-- container end  -->
+<!-- Post Section Code End -->
+
+<!-- Pagination Code  start-->
+<div class="container">
+  <div class="pagination mt-4 mb-5">
+  <span class="step-links">
+    {% if pages.has_previous %}
+    <a class="btn btn-success btn-sm" href="?page=1">&laquo;</a>
+    <a class="btn btn-primary btn-sm mr-2 ml-2" href="?page={{pages.previous_page_number}}">Previous</a>
+    {% endif %}
+
+    <span class="text-page">PAGE: {{ pages.number }}</span>
+
+    {% if pages.has_next %}
+    <a class="btn btn-primary btn-sm mr-2 ml-2 pl-4 pr-4" href="?page={{pages.next_page_number}}">Next</a>
+    <a class="btn btn-success btn-sm" href="?page={{ pages.paginator.num_pages }}">&raquo;</a>
+    {% endif %}
+  </span>
+ </div>
+</div>
+<!-- Pagination Code End-->
+{% endblock %}

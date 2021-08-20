@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block title %}
+ Sign up
+{% endblock %}
+{% block content %}
+<div class="registration-section">
+ <div class="container">
+  <div class="registration">
+   <div class="col-lg-5 mx-auto">
+   <h1 class="text-center mt-5">
+     User Registration
+   </h1>
+ <div class="module">
+  <p>Enter your details to create an account:</p>
+   <form action="" method="post">
+    {{ form|bootstrap }}
+     {% csrf_token %}
+    <p><input class="btn btn-success btn-sm pt-2 pb-2 pl-5 pr-5" type="submit" value="Create My Account"></p>
+   </form>
+ </div>
+</div>
+ </div>
+  </div>
+   </div>
+{% endblock %}

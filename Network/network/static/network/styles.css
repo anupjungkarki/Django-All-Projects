@@ -1,0 +1,65 @@
+.card .profile-name{
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.card .content{
+font-weight: lighter;
+font-family: sans-serif;
+}
+
+.post{
+	font-size: 16px;
+}
+
+.card-footer a{
+	color: #000;
+}
+.main-content-header
+{
+	background-color: #f8f9fa!important;
+}
+
+.follow-button{
+	margin-left: 100px;
+	margin-right: 100px;
+	font-weight: bold;
+}
+.btn-like{
+padding: 0;
+border: none;
+background: none;
+color: #0095EA;
+}
+
+.btn-unlike{
+padding: 0;
+border: none;
+background: none;
+color: #D85800;
+}
+button:focus { outline: none; }
+
+.text-page
+{
+	font-weight: bolder;
+}
+.color-likes{
+	color: #F2350D;
+}
+.card-footer .edit{
+	color: #0A6ACA;
+}
+.card-footer .delete{
+	color: #C70039;
+}
+
+.counter-post{
+	font-weight: bold;
+}
+.suggested-follower a{
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+}

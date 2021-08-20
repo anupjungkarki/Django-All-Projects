@@ -1,0 +1,14 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+    {% for item in searched %}
+        <h2 class="alert alert-success">Hurray! Page Found Successfull!</h2>
+        <li class="entry-link"><a href=/wiki/{{item}}>{{ item }}</a></li>
+        {% empty %}
+            <h3 class="alert alert-danger">Whoops! Nothing is found on Search!</h3>
+    {% endfor %}
+{% endblock %}

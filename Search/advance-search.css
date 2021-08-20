@@ -1,0 +1,48 @@
+label
+{
+	width:30%;
+	font-size: 14px;
+}
+p{
+	font-size: 18px;
+}
+
+.form{
+	width: 70%;
+	margin-bottom: 10px;
+}
+
+
+.inst
+{
+	color: #666;
+    font-family: monospace;
+    font-size: 12px;
+    margin-top: 9px;
+}
+
+.btln
+{
+ 
+     margin-left: 81%;
+     height: 30px;
+     background-color: #4d90fe;
+     color: #ffffff;
+     border: 1px solid  blue;
+
+}
+
+nav
+{
+	background-color: #f1f1f1;
+}
+
+img
+{
+width: 100px;
+height: 32px;
+}
+
+a{
+	font-weight:bolder;
+}

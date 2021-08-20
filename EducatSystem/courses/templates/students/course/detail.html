@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+ {{ object.title }}
+{% endblock %}
+{% block content %}
+<div class="course-details-students">
+ <div class="container">
+ <div class="row">
+  <div class="col-md-3">
+ <h1 class="title-course text-center text-uppercase">
+    {{ module.title }}
+ </h1><hr>
+ <div class="contents">
+   <h3 class="text-center">Modules</h3>
+    <ul class="modules" id="modules">
+    {% for m in object.modules.all %}
+    <li data-id="{{ m.id }}" {% if m == module %} class="selected"{% endif %}>
+     <a href="{% url 'student_course_detail_module' object.id m.id %}">
+  <span>
+   Module <span class="order">{{ m.order|add:1 }}:</span>
+  </span>
+    {{ m.title }}
+    </a>
+   </li>
+   {% empty %}
+  <li>No modules yet.</li>
+  {% endfor %}
+  </ul>
+ </div>
+</div>
+<div class="col-md-9">
+  <div class="module mt-5">
+    {% for content in module.contents.all %}
+    {% with item=content.item %}
+   <h2>{{ item.title }}</h2>
+   <p>{{ item.content }}</p>
+   <p><img src="{{ item.file.url }}"></p>
+   {{ item.render }}
+    {% endwith %}
+    {% empty %}
+     <p class="text-center mt-5">Not Content Yet!!!</p>
+    {% endfor %}
+  </div>
+ </div>
+</div>
+  </div>
+    </div>
+{% endblock %}

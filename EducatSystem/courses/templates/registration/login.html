@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+<div class="login-section">
+ <div class="container">
+  <div class="login p-4 m-4">
+  	<div class="col-lg-5 mx-auto pt-4 pb-4">
+     <h1 class=" text-center">Log-in</h1>
+ <div class="module">
+ {% if form.errors %}
+ <p class="text-warning">Your username and password didn't match. Please try again,</p>
+ {% else %}
+ <p class="text-black">Please, use the following form to log-in</p>
+ {% endif %}
+
+ <div class="login-form ">
+   <form action="{% url 'login' %}" method="post">
+     {{ form|bootstrap }}
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p><input type="submit" class="btn btn-success btn-sm text-center pt-2 pb-2 pl-5 pr-5" value="Login"></p>
+   </form>
+  </div>
+ </div>
+  </div>
+    </div>
+      </div>
+    </div>
+{% endblock %}

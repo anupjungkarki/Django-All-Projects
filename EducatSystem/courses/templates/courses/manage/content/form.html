@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block title %}
+ {% if object %}
+ Edit content "{{ object.title }}"
+ {% else %}
+ Add a new content
+ {% endif %}
+{% endblock %}
+{% block content %}
+<div class="container">
+ <h1>
+ {% if object %}
+ <h1 class="edit-course text-center mt-3">Edit content "{{ object.title }}"</h1>
+ {% else %}
+ <h1 class="add-course">Add a new content</h1>
+ {% endif %}
+ </h1>
+ <div class="module">
+ <h2>Course info</h2>
+ <form action="" method="post" enctype="multipart/form-data">
+ {{ form|bootstrap }}
+ {% csrf_token %}
+ <p><input class="btn btn-primary btn-sm pt-2 pb-2 pl-5 pr-5 mb-4" type="submit" value="Save content"></p>
+ </form>
+ </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}
+ {% if subject %}
+ {{ subject.title }} courses
+ {% else %}
+ All courses
+ {% endif %}
+ {% endblock %}
+{% block content %}
+<div class="into-section">
+<div class="container">
+  <main>
+	   <section >
+		<h3>Welcome to Educat System</h3>
+		<h1>Choose our different Course <span class="change_content"></span></h1>
+        <p>"Education lead the nation"</p>
+        <a href="/students/register/" class="btnone">Registration</a>
+        <a href="{% url 'login' %}" class="btntwo">User Login</a>
+	   </section>
+   </main>
+ </div>
+</div>
+<br>
+<div class="course container">
+    <h1>
+      {% if subject %}
+       {{ subject.title }} courses
+      {% else %}
+      <h4 class="text-center text-uppercase border rounded pt-3 pb-3" >All courses</h4>
+     {% endif %}
+</h1>
+
+<div class="container">
+ <div class="row">
+   <div class="col-lg-3">
+    <div class="contents">
+     <h3>Courses Category</h3>
+      <ul class="list-group" id="modules">
+      <li class="list-group-item" {% if not subject %}class="selected"{% endif %}>
+        <a href="{% url 'course_list' %}">All Courses</a>
+      </li>
+    {% for s in subjects %}
+       <li class="list-group-item" {% if subject == s %}class="selected"{% endif %}>
+        <a href="{% url 'course_list_subject' s.slug %}">
+         {{ s.title }}
+        <br><span>{{ s.total_courses }} courses</span>
+        </a>
+     </li>
+   {% endfor %}
+   </ul>
+  </div>
+</div>
+
+ <div class="col-lg-9">
+   <div class="module row mt-5">
+    {% for course in courses %}
+     {% with subject=course.subject %}
+     <div class="col-md-6 mb-4">
+      <h3><a href="{% url 'course_detail' course.slug %}">{{ course.title }}</a></h3>
+        <p>
+         <a href="{% url 'course_list_subject' subject.slug %}">{{ subject }}</a>.
+          {{ course.total_modules }} modules.
+           Instructor: {{ course.owner.username }}
+        </p>
+      </div>
+      {% endwith %}
+      {% empty %}
+       No course in this Category yet!!
+     {% endfor %}
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock %}

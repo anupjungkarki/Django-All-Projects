@@ -1,0 +1,49 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+	{% include 'auctions/alert.html' %}
+    <h2 class="text-center mb-5 border alert-light rounded pt-2 pb-2">My Watchlist</h2>
+</div>
+{% if is_exist %}
+<div class="active-products">
+  <div class="container">
+   <div class="row">
+    <div class="card-group">
+{% for watchlist in list %}
+ <div class="col-md-4">
+   <div class="card">
+   	 {% if not watchlist.listing.ended %} <span class="badge badge-success pl-3 pr-3 pt-2 pb-2 text">Active</span> {% else %} <span class="badge badge-warning pl-3 pr-3 pt-2 pb-2 text">Closed</span> {% endif %}
+    <img class="card-img-top" src="{{watchlist.listing.imageurl}}" alt="Card image cap" width="200px" height="200px">
+    <div class="card-body">
+      <h5 class="card-title">{{watchlist.listing.title}}</h5>
+      <p class="card-text">{{watchlist.listing.description|truncatewords:20}}</p><hr>
+      <small class="float-left">Starting Price: ${{watchlist.listing.price}}</small>
+      {% if watchlist.listing.bid_price %}
+      <small class="float-right">Current Price:<span>${{watchlist.listing.bid_price}}</span></small>
+      {% else %}
+      <small class="float-right">Current Price:<span>${{watchlist.listing.price}}</span></small>
+      {% endif %}
+    </div>
+    <div class="card-footer">
+      {% if user.is_authenticated %}
+      <a class=" border btn btn-danger btn-sm form-control" href="/remove-watchlist/{{watchlist.listing.title}}">RemoveWatchlist</a><hr>
+      <a class="float-left btn btn-info form-control btn-sm form-control" href="/details/{{watchlist.listing.title}}">View Listings</a> 
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% else %}
+<div class="container">
+  <div class="notice text-center">
+    <span class="text-warning">{{ user.username }} You haven't added any Items on Watchlist Yet!!</span>
+</div>
+  </div>
+{% endif %}
+      </div> 
+    </div>
+  </div>
+</div>
+{% endblock %}
